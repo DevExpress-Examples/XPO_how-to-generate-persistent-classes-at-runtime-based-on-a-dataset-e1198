@@ -34,7 +34,7 @@ namespace WindowsApplication4
         }
 
 
-        string connection = AccessConnectionProvider.GetConnectionString(@"nwind.mdb");
+        string connection = SQLiteConnectionProvider.GetConnectionString(@"nwind.sqlite");
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -43,14 +43,14 @@ namespace WindowsApplication4
             XpoDefault.Dictionary = d;
             XpoDefault.DataLayer = new SimpleDataLayer(d, s);
 
-            XPClassInfo order = CreateObject(s, "orders", typeof(DetailDataObject));
-            XPClassInfo customer = CreateObject(s, "customers", typeof(ParentDataObject));
+            XPClassInfo order = CreateObject(s, "Order", typeof(DetailDataObject));
+            XPClassInfo customer = CreateObject(s, "Customer", typeof(ParentDataObject));
             AssociationAttribute a = new AssociationAttribute("CustomerOrders"); //, typeof(DetailDataObject)
-            a.ElementTypeName = "orders";
+            a.ElementTypeName = "Order";
 
             AssociationAttribute a1 = new AssociationAttribute("CustomerOrders"); //, typeof(ParentDataObject)
 
-            order.CreateMember("CustomerID", customer, new Attribute[] { a1 });
+            order.CreateMember("CustomerId", customer, new Attribute[] { a1 });
             customer.CreateMember("Orders", typeof(XPCollection), true, new Attribute[] { a });
             gridControl1.DataSource = new XPCollection(Session.DefaultSession, customer);
 

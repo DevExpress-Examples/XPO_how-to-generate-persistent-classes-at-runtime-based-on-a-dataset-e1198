@@ -33,7 +33,7 @@ Namespace WindowsApplication4
 		End Function
 
 
-		Private connection As String = AccessConnectionProvider.GetConnectionString("nwind.mdb")
+		Private connection As String = SQLiteConnectionProvider.GetConnectionString("nwind.sqlite")
 
 		Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
 			Dim s As IDataStore = XpoDefault.GetConnectionProvider(connection, AutoCreateOption.None)
@@ -41,14 +41,14 @@ Namespace WindowsApplication4
 			XpoDefault.Dictionary = d
 			XpoDefault.DataLayer = New SimpleDataLayer(d, s)
 
-			Dim order As XPClassInfo = CreateObject(s, "orders", GetType(DetailDataObject))
-			Dim customer As XPClassInfo = CreateObject(s, "customers", GetType(ParentDataObject))
+			Dim order As XPClassInfo = CreateObject(s, "Order", GetType(DetailDataObject))
+			Dim customer As XPClassInfo = CreateObject(s, "Customer", GetType(ParentDataObject))
 			Dim a As New AssociationAttribute("CustomerOrders") ', typeof(DetailDataObject)
-			a.ElementTypeName = "orders"
+			a.ElementTypeName = "Order"
 
 			Dim a1 As New AssociationAttribute("CustomerOrders") ', typeof(ParentDataObject)
 
-			order.CreateMember("CustomerID", customer, New Attribute() { a1 })
+			order.CreateMember("CustomerId", customer, New Attribute() {a1})
 			customer.CreateMember("Orders", GetType(XPCollection), True, New Attribute() { a })
 			gridControl1.DataSource = New XPCollection(Session.DefaultSession, customer)
 

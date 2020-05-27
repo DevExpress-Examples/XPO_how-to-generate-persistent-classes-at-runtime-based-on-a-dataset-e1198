@@ -40,7 +40,6 @@ Namespace WindowsApplication4
 			Me.gridControl1.Location = New System.Drawing.Point(0, 0)
 			Me.gridControl1.MainView = Me.gridView1
 			Me.gridControl1.Name = "gridControl1"
-			Me.gridControl1.ServerMode = True
 			Me.gridControl1.Size = New System.Drawing.Size(738, 611)
 			Me.gridControl1.TabIndex = 0
 			Me.gridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() { Me.gridView1})

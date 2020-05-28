@@ -1,4 +1,6 @@
-﻿Namespace WindowsApplication4
+Imports Microsoft.VisualBasic
+Imports System
+Namespace WindowsApplication4
 	Partial Public Class Form1
 		''' <summary>
 		''' Required designer variable.
@@ -56,8 +58,7 @@
 			Me.Controls.Add(Me.gridControl1)
 			Me.Name = "Form1"
 			Me.Text = "Form1"
-'INSTANT VB NOTE: The following InitializeComponent event wireup was converted to a 'Handles' clause:
-'ORIGINAL LINE: this.Load += new System.EventHandler(this.Form1_Load);
+'			Me.Load += New System.EventHandler(Me.Form1_Load);
 			CType(Me.gridControl1, System.ComponentModel.ISupportInitialize).EndInit()
 			CType(Me.gridView1, System.ComponentModel.ISupportInitialize).EndInit()
 			CType(Me.xpCollection1, System.ComponentModel.ISupportInitialize).EndInit()

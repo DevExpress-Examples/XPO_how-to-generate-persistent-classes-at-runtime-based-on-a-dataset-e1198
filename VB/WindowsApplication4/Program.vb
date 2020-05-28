@@ -1,17 +1,20 @@
-﻿Imports System
+Imports Microsoft.VisualBasic
+Imports System
 Imports System.Collections.Generic
 Imports System.Windows.Forms
 
 Namespace WindowsApplication4
-	Friend Module Program
+	Friend NotInheritable Class Program
 		''' <summary>
 		''' The main entry point for the application.
 		''' </summary>
-		<STAThread>
-		Sub Main()
+		Private Sub New()
+		End Sub
+		<STAThread> _
+		Shared Sub Main()
 			Application.EnableVisualStyles()
 			Application.SetCompatibleTextRenderingDefault(False)
 			Application.Run(New Form1())
 		End Sub
-	End Module
+	End Class
 End Namespace

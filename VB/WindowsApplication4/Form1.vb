@@ -1,4 +1,5 @@
-﻿Imports System
+Imports Microsoft.VisualBasic
+Imports System
 Imports System.Collections.Generic
 Imports System.ComponentModel
 Imports System.Data
@@ -12,15 +13,13 @@ Imports DevExpress.Xpo.Metadata
 Namespace WindowsApplication4
 	Partial Public Class Form1
 		Inherits Form
-
 		Public Sub New()
 			InitializeComponent()
 		End Sub
 
 
-'INSTANT VB NOTE: The variable name was renamed since Visual Basic does not handle local variables named the same as class members well:
-		Private Function CreateObject(ByVal s As IDataStore, ByVal name_Conflict As String, ByVal baseType As Type) As XPClassInfo
-			Dim tables() As DBTable = DirectCast(s, IDataStoreSchemaExplorer).GetStorageTables(name_Conflict)
+		Private Function CreateObject(ByVal s As IDataStore, ByVal name As String, ByVal baseType As Type) As XPClassInfo
+			Dim tables() As DBTable = (CType(s, IDataStoreSchemaExplorer)).GetStorageTables(name)
 			Dim table As DBTable = tables(0)
 			Dim info As XPClassInfo = XpoDefault.Dictionary.CreateClass(XpoDefault.Dictionary.QueryClassInfo(baseType), table.Name)
 			Dim key As String = table.PrimaryKey.Columns(0)
@@ -36,7 +35,7 @@ Namespace WindowsApplication4
 
 		Private connection As String = SQLiteConnectionProvider.GetConnectionString("nwind.sqlite")
 
-		Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+		Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
 			Dim s As IDataStore = XpoDefault.GetConnectionProvider(connection, AutoCreateOption.None)
 			Dim d As XPDictionary = New ReflectionDictionary()
 			XpoDefault.Dictionary = d
@@ -49,25 +48,23 @@ Namespace WindowsApplication4
 
 			Dim a1 As New AssociationAttribute("CustomerOrders") ', typeof(ParentDataObject)
 
-			order.CreateMember("CustomerId", customer, New Attribute() { a1 })
+			order.CreateMember("CustomerId", customer, New Attribute() {a1})
 			customer.CreateMember("Orders", GetType(XPCollection), True, New Attribute() { a })
 			gridControl1.DataSource = New XPCollection(Session.DefaultSession, customer)
 
 		End Sub
 	End Class
-	<NonPersistent, MemberDesignTimeVisibility(False)>
+	<NonPersistent, MemberDesignTimeVisibility(False)> _
 	Public Class DetailDataObject
 		Inherits XPLiteObject
-
 		Public Sub New(ByVal session As Session, ByVal classInfo As XPClassInfo)
 			MyBase.New(session, classInfo)
 		End Sub
 	End Class
 
-	<NonPersistent, MemberDesignTimeVisibility(False)>
+	<NonPersistent, MemberDesignTimeVisibility(False)> _
 	Public Class ParentDataObject
 		Inherits XPLiteObject
-
 		Public Sub New(ByVal session As Session, ByVal classInfo As XPClassInfo)
 			MyBase.New(session, classInfo)
 		End Sub

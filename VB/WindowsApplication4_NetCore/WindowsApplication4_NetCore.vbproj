@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\WindowsApplication4\Form1.vb" Link="Form1.vb" />
+    <Compile Include="..\WindowsApplication4\Form1.Designer.vb" Link="Form1.Designer.vb" />
+    <Compile Include="..\WindowsApplication4\Program.vb" Link="Program.vb" />
+    <Compile Include="..\WindowsApplication4\Properties\Resources.Designer.vb" Link="Resources.Designer.vb" />
+    <Compile Include="..\WindowsApplication4\Properties\Settings.Designer.vb" Link="Settings.Designer.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\WindowsApplication4\Form1.resx" Link="Form1.resx" />
+    <EmbeddedResource Include="..\WindowsApplication4\Properties\Resources.resx" Link="Resources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\WindowsApplication4\nwind.sqlite" Link="nwind.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\WindowsApplication4\Properties\Settings.settings" Link="Settings.settings" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DevExpress.WindowsDesktop.Win" Version="20.1.16-ctp" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.112.2" />
+  </ItemGroup>
+</Project>

@@ -87,7 +87,7 @@
     <Reference Include="DevExpress.Utils.v24.2">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpo.v24.2L">
+    <Reference Include="DevExpress.Xpo.v24.2">
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.XtraEditors.v24.2">
